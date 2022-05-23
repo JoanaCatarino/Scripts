@@ -20,6 +20,9 @@ conda develop ./behavior_models #I guess
 pip install sobol-seq==0.1.1
 '''
 
+
+#compute sinl function 
+
 #%%
 
 # from pupil_functions import load_pupil, load_trials
@@ -27,7 +30,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
-import pytorch as torch
+import torch
 from scipy.stats import zscore
 from os.path import join
 from one.api import ONE
@@ -128,19 +131,21 @@ df_Trials = load_trials(eid)
     
 from models.expSmoothing_prevAction import expSmoothing_prevAction as exp_prevAction
 from models.optimalBayesian import optimal_Bayesian
-savepath="/Users/kcenia/Desktop/IBL/Coding/FirstFitModel"
+savepath= 'C:/Users/Asus/Desktop/IBL/Scripts/Charles_model/Example_fit_model' # it works with either / or \\
 actions = df_Trials.choice
 stimuli = df_Trials.signed_contrast
 stim_side = df_Trials.stim_side
-prior_model = exp_prevAction(savepath, [eid], subject,actions, stimuli, stim_side)
+prior_model = exp_prevAction(savepath, [eid], subject, actions, stimuli, stim_side)
 prior_model.load_or_train(remove_old=False)
-prior_model_output = prior_model.compute_signal(signal=['prior','prediction_error' , 'score'],
+prior_model_output =prior_model.compute_signal(signal=['prior','prediction_error','score'],
+                                            parameter_type ='posterior_mean',
                                             act=actions,
                                             stim=stimuli,
                                             side=stim_side)
 prior_model_signal =  prior_model_output['prior']
 prior_model_accuracy =  prior_model_output['accuracy']
 prior_model_pred_error =  prior_model_output['prediction_error']
+
 #%%
 """
 take out trials where prior_model_pred_error is 0

@@ -49,6 +49,11 @@ def figure_style():
     return  dpi
 
 
+
+
+
+
+
  #%% 
     matplotlib.rcParams['pdf.fonttype'] = 42
     matplotlib.rcParams['ps.fonttype'] = 42

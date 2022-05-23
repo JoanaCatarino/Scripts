@@ -12,6 +12,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
+import torch
 from scipy.stats import zscore
 from functions import (figure_style)
 from os.path import join
