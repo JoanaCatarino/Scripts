@@ -12,9 +12,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
 import pandas as pd
-import torch
 from scipy.stats import zscore
-from functions import (figure_style)
+from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
 one = ONE()
@@ -87,7 +86,7 @@ for i, eid in enumerate(eids):
                                                                'Feedback_type':df_Trials.loc[t, 'feedbackType'],
                                                               'probabilityLeft':df_Trials.loc[t, 'probabilityLeft']})))
 
-    pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, np.inf], labels=[1, 2, 3])
+    pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, np.inf], labels=['0-20 trials', '20-40 trials', '+40 trials'])
 
 #%%
 

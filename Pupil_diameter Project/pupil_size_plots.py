@@ -1,11 +1,9 @@
-#!/usr/bin/env python
-# @File: Pupil_scripts/plot_pupil_size.py
-# @Author: Niccolo' Bonacchi (@nbonacchi)
-# @Date: Monday, May 23rd 2022, 3:12:23 pm
+
+
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
-from functions import figure_style
+from plot_functions import figure_style
 
 from pupil_size import load_pupil_size_df
 
