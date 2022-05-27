@@ -1,26 +1,35 @@
 
 
 import matplotlib.pyplot as plt
+import pandas as pd
 import numpy as np
 import seaborn as sns
 from plot_functions import figure_style
 
-from pupil_size import load_pupil_size_df
+#from pupil_size import load_pupil_size_df
+
+pupil_size_df = pd.read_csv('/home/joana/Desktop/pupil_size.csv')
 
 date = 'ADD_DATE_TO_DATA_FRAME'
 
-def all_contrasts_by_blocks(pupil_size_df, ):
+def all_contrasts_by_blocks(pupil_size_df, subject):
+    
     pupil_size = pupil_size_df
+    
     # Plot pupil size per contrast for all block types
     pupil_size = pupil_size.reset_index(drop=True)
     dpi = figure_style()
     colors = ['#47BFD1', '#C89AFF', '#FF9561']
+    #subject = pupil_size_df['subject'].unique()
+    pupil_size = pupil_size[pupil_size['subject'] == subject]
+    
     # Contrast = -1
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
     ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' f'{subject}, {date}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    plt.show()
     #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_neg1.png'))
 
     # Contrast = -0.25
@@ -213,6 +222,8 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df):
 
 def all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df):
     pupil_size = pupil_size_df
+    
+    
     # CORRECT vs INCORRECT TRIALS
     pupil_size = pupil_size.reset_index(drop=True)
 

@@ -17,7 +17,7 @@ import pandas as pd
 one = ONE(base_url='https://alyx.internationalbrainlab.org')
 
 # Days to input Citric Acid water, including today (for the weekend on Friday input 3 days)
-DAYS = 8
+DAYS = 3
 USER = 'joana.catarino'
 
 # Get vector of dates

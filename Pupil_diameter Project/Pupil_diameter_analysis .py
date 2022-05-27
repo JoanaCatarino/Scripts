@@ -16,6 +16,7 @@ from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
+from pupil_size_plots import (all_contrasts_by_blocks)
 one = ONE()
 
 
@@ -27,6 +28,7 @@ N_Trials = 10
 pupil_size = pd.DataFrame()
 results_df = pd.DataFrame()
 results_df_baseline = pd.DataFrame()
+all_pupil_sizes = []
 #Fig_path =
 
 
@@ -87,12 +89,19 @@ for i, eid in enumerate(eids):
                                                               'probabilityLeft':df_Trials.loc[t, 'probabilityLeft']})))
 
     pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, np.inf], labels=['0-20 trials', '20-40 trials', '+40 trials'])
+    
+    all_pupil_sizes.append(pupil_size) 
+    
+pupil_size_df = pd.concat(all_pupil_sizes, axis=0)
+
+
+
 
 #%%
 
     # Plot pupil size per contrast for all block types
 
-    pupil_size = pupil_size.reset_index(drop=True)
+    pupil_size_df = pupil_size_df.reset_index(drop=True)
 
     dpi = figure_style()
     colors = ['#47BFD1', '#C89AFF', '#FF9561']
@@ -100,8 +109,8 @@ for i, eid in enumerate(eids):
 
     # Contrast = -1
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
-    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size_df[(pupil_size_df['contrast'] == -1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_neg1.png'))
@@ -761,6 +770,8 @@ ax1.legend(title='', frameon=False)
 plt.tight_layout()
 sns.despine(trim=True)
 
+#%%
 
 
 
+all_contrasts_by_blocks(pupil_size_df)
