@@ -3,25 +3,23 @@
 Created on Mon May 23 10:02:41 2022
 
 @author: Joana
-"""
-'''
+
+
+
+CHARLES MODEL (PRIOR + PREDICTION ERROR)
+
 Hackathon 2022May22
 
-(base) Kcenias-MacBook-Pro-2:~ kcenia$ cd /Users/kcenia/Desktop/IBL/coding
-(base) Kcenias-MacBook-Pro-2:coding kcenia$ cd ../
-(base) Kcenias-MacBook-Pro-2:IBL kcenia$ cd Coding
-(base) Kcenias-MacBook-Pro-2:Coding kcenia$ conda develop ./behavior_models
-added /Users/kcenia/Desktop/IBL/Coding/behavior_models
-completed operation for: /Users/kcenia/Desktop/IBL/Coding/behavior_models
-(base) Kcenias-MacBook-Pro-2:Coding kcenia$ 
-conda activate iblenv #do this 1st
-conda develop ./behavior_models #I guess
-#conda install sobol_seq
-pip install sobol-seq==0.1.1
-'''
+Firts steps (when using this script in a new computer):
+    Go to the anaconda prompt terminal
+1. conda activate iblenv
+2. conda develop C:\Users\Asus\Desktop\IBL\Scripts\Charles_model\behavior_models
+3. pip install sobol-seq==0.1.1
 
+"""
 
-#compute sinl function 
+#compute signal function 
+
 
 #%%
 

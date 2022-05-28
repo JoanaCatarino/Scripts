@@ -421,5 +421,5 @@ if __name__ == '__main__':
     subject = "ZFM-02368"
     pupil_size_df = load_pupil_size_df(subject)
     all_contrasts_by_blocks(pupil_size_df)
-    all_contrasts_per_block_by_stim_side(pupil_size_df)
-    all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df)
+    # all_contrasts_per_block_by_stim_side(pupil_size_df)
+    # all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df)

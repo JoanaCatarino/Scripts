@@ -2,15 +2,6 @@
 # @File: Pupil_scripts/Untitled-1.py
 # @Author: Niccolo' Bonacchi (@nbonacchi)
 # @Date: Monday, May 23rd 2022, 11:46:37 am
-"""
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-
-Created on Thu Dec 16 15:59:18 2021
-
-@author: joana
-"""
-
 from pupil_functions import load_pupil, load_trials
 import numpy as np
 import pandas as pd
@@ -26,14 +17,14 @@ def query_sessions(subject, dataset="_ibl_leftCamera.dlc.pqt", protocol: str = "
     return eids
 
 
-def save_pupil_size_df(data_frame, subject, folderpath="./"):
+def save_pupil_size_df(data_frame, subject, folderpath="./Pupil_df/"):
     filename = subject + "_pupil_size_df.pkl"
     filepath = Path(folderpath).joinpath(filename)
     data_frame.to_csv(filepath)
     print(f"Saved pupil size dataframe for subject {subject} to {filepath}")
 
 
-def load_pupil_size_df(subject, folderpath="./"):
+def load_pupil_size_df(subject, folderpath="./Pupil_df/"):
     filename = subject + "_pupil_size_df.pkl"
     filepath = Path(folderpath).joinpath(filename)
     if not filepath.exists():
@@ -42,7 +33,7 @@ def load_pupil_size_df(subject, folderpath="./"):
     return pd.read_pickle(filepath)
 
 
-def compute_pupil_size_df(subject, eids=None, one=None, save=True, folderpath="./"):
+def compute_pupil_size_df(subject, eids=None, one=None, save=True, folderpath="./Pupil_df/"):
     one = one or ONE()
     eids = eids or query_sessions(
         subject, protocol="ephys", dataset="_ibl_leftCamera.dlc.pqt", one=one)
@@ -127,8 +118,20 @@ def compute_pupil_size_df(subject, eids=None, one=None, save=True, folderpath=".
     return pupil_size_df
 
 
+<<<<<<< Updated upstream:Pupil_diameter Project/pupil_size.py
 def compute_pupil_size_df_for_subjects(subjects, eids=None, protocol="ephys", dataset="_ibl_leftCamera.dlc.pqt",
                                        one=None, save=True, folderpath="./"):
+=======
+def compute_pupil_size_df_for_subjects(
+    subjects,
+    eids=None,
+    protocol="ephys",
+    dataset="_ibl_leftCamera.dlc.pqt",
+    one=None,
+    save=True,
+    folderpath="./Pupil_df/",
+):
+>>>>>>> Stashed changes:Pupil_scripts/pupil_size.py
     one = one or ONE()
     subjects = subjects if isinstance(subjects, list) else [subjects]
     
@@ -142,9 +145,15 @@ def compute_pupil_size_df_for_subjects(subjects, eids=None, protocol="ephys", da
 
 
 if __name__ == "__main__":
-    one = ONE()
+    # one = ONE()
     subject = "ZFM-02368"
+<<<<<<< Updated upstream:Pupil_diameter Project/pupil_size.py
     eids = query_sessions(subject, protocol="ephys", dataset="_ibl_leftCamera.dlc.pqt", one=one)
     pupil_size_df = compute_pupil_size_df("ZFM-02368", eids, one=one, save=False)
     save_pupil_size_df(pupil_size_df, subject=subject, folderpath="./")
+=======
+    # eids = query_sessions(subject, protocol="ephys", dataset="_ibl_leftCamera.dlc.pqt", one=one)
+    # pupil_size_df = compute_pupil_size_df("ZFM-02368", eids, one=one, save=False)
+    # save_pupil_size_df(pupil_size_df, subject=subject, folderpath="./Pupil_df/")
+>>>>>>> Stashed changes:Pupil_scripts/pupil_size.py
     pupil_size_df = load_pupil_size_df(subject)
