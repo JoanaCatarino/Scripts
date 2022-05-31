@@ -1,16 +1,14 @@
 
-
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 import seaborn as sns
 from plot_functions import figure_style
 
-#from pupil_size import load_pupil_size_df
 
-pupil_size_df = pd.read_csv('/home/joana/Desktop/pupil_size.csv')
+pupil_size_df = pd.read_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/ZFM-02368_all_sessions_df.csv')
+subject = pupil_size_df.subject.unique()
 
-date = 'ADD_DATE_TO_DATA_FRAME'
 
 def all_contrasts_by_blocks(pupil_size_df, subject):
     
@@ -20,83 +18,83 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     pupil_size = pupil_size.reset_index(drop=True)
     dpi = figure_style()
     colors = ['#47BFD1', '#C89AFF', '#FF9561']
-    #subject = pupil_size_df['subject'].unique()
-    pupil_size = pupil_size[pupil_size['subject'] == subject]
-    
+
     # Contrast = -1
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    plt.show()
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_neg1.png'))
+    sns.despine(trim=True)
 
     # Contrast = -0.25
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -0.25)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.25' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.25' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_neg025.png'))
+    sns.despine(trim=True)
 
     # Contrast = -0.125
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -0.125)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.125' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.125' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_neg0125.png'))
+    sns.despine(trim=True)
 
     # Contrast = -0.0625
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -0.0625)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.0625' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.0625' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_neg00625.png'))
+    sns.despine(trim=True)
 
     # Contrast = +0
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0) & (pupil_size['contrast'] == -0)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 right side' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 right side' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_0.png'))
+    sns.despine(trim=True)
 
     # Contrast = +1
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_pos1.png'))
+    sns.despine(trim=True)
 
     # Contrast = +0.25
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0.25)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_pos025.png'))
+    sns.despine(trim=True)
 
     # Contrast = +0.125
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0.125)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_pos0125.png'))
+    sns.despine(trim=True)
 
     # Contrast = +0.0625
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0.0625)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-    #plt.savefig(join(Fig_path, f'{subject}_{date}_Contrast_pos00625.png'))
+    sns.despine(trim=True)
+    
 
-def all_contrasts_per_block_by_stim_side(pupil_size_df):
+
+def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
+    
     # Plot pupil size per block trial with stim appearing on left and right (per constrast)
     pupil_size = pupil_size_df
     pupil_size = pupil_size.reset_index(drop=True)
@@ -105,26 +103,28 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df):
     colors = ['#47BFD1', '#C89AFF']
 
     # Contrast 1 probability 0.2
-    full_contrast_l = pupil_size[((np.abs(pupil_size['contrast']) == 1) & (pupil_size['probabilityLeft'] == 0.2))]
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
-    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=full_contrast_l, legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.2' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
-
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+    
     # Contrast 1 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.5' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 1 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.8' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
  # -----------------
 
@@ -132,46 +132,52 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df):
     # Contrast 0.25 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.2' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 0.25 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.5)) ], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.5' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 0.25 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.8)) ], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
     ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.8' '    ' f'{subject}, {date}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
 # -----------------
 
     # Contrast 0.125 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.2' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 0.125 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.5' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) 
+    sns.despine(trim=True)
 
     # Contrast 0.125 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.8' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) 
+    sns.despine(trim=True)
 
 
 # -----------------
@@ -179,48 +185,58 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df):
     # Contrast 0.0625 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.2' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 0.0625 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.5' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) 
+    sns.despine(trim=True)
 
     # Contrast 0.0625 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.8' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
  # -----------------
 
     # Contrast 0 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.2' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 0 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.5' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
     # Contrast 0 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.8' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
-    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
 
-def all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df):
+
+
+def all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df, subject):
+   
+    
     pupil_size = pupil_size_df
     
     
@@ -422,4 +438,5 @@ if __name__ == '__main__':
     pupil_size_df = load_pupil_size_df(subject)
     all_contrasts_by_blocks(pupil_size_df)
     all_contrasts_per_block_by_stim_side(pupil_size_df)
+    multi_fig_all_contrasts_by_blocks(pupil_size_df)
     all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df)

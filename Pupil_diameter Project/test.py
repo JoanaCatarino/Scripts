@@ -19,7 +19,7 @@ from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
-from pupil_size_plots import (all_contrasts_by_blocks)
+from pupil_size_plots import all_contrasts_by_blocks, all_contrasts_per_block_by_stim_side, all_contrasts_all_blocks_correct_error_by_stim_side_figure
 one = ONE()
 
 
@@ -97,13 +97,23 @@ for i, eid in enumerate(eids):
     
 pupil_size_df = pd.concat(all_pupil_sizes, axis=0)  
 
-pupil_size_df.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/Data_frames/pupil_size_df.csv')
+#pupil_size_df.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/ZFM-02368_all_sessions_df.csv')
 
-pupil_size_mean_test = pupil_size_df.groupby('time').mean()
+#pupil_size_mean_test = pupil_size_df.groupby('time').mean()
 
-pupil_size_mean_test.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/Data_frames/pupil_size_mean_test.csv')
+#pupil_size_mean_test.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/pupil_size_mean_test.csv')
 
-#PLOTS
+
+# ------ PLOTS ------
+
+all_contrasts_by_blocks(pupil_size_df, subject)
+
+all_contrasts_per_block_by_stim_side(pupil_size_df, subject)
+
+all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df, subject)
+
+
+
 
 
 

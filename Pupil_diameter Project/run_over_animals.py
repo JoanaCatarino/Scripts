@@ -12,10 +12,10 @@ import numpy as np
 import seaborn as sns
 import pandas as pd
 from scipy.stats import zscore
-from functions import (figure_style)
+from plot_functions import (figure_style)
 from os.path import join
-from one.api import ONE
-one = ONE(mode='local')
+from one.api import ONE  
+one = ONE() # if we want to use data already available in the computer use -> one = ONE (mode='local')
 
 
 # Settings
@@ -31,7 +31,7 @@ results_df_baseline = pd.DataFrame()
 
 # Query sessions
 eids, ses_details = one.search(lab='mainenlab', dataset=['_ibl_leftCamera.dlc.pqt', '_ibl_leftCamera.times.npy'], task_protocol='ephys',
-                               date_range=['2021-01-01', '2030-01-01'], details=True, project='ibl_neuropixel_brainwide_01')
+                               date_range=[ '2021-01-01', '2030-01-01'], details=True, project='ibl_neuropixel_brainwide_01')
 subjects = np.unique([i['subject'] for i in ses_details])
 
 subjects = ['ZFM-02368']
