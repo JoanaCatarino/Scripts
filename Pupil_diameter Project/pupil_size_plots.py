@@ -6,7 +6,7 @@ import seaborn as sns
 from plot_functions import figure_style
 
 
-pupil_size_df = pd.read_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/ZFM-02368_all_sessions_df.csv')
+pupil_size_df = pd.read_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_sessions_ZFM-02368.csv')
 subject = pupil_size_df.subject.unique()
 
 
@@ -432,6 +432,70 @@ def all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df, su
     ax6.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Probability 0.8 - INCORRECT', ylim=[-25, 25])
     ax6.plot([0, 0], ax6.get_ylim(), ls='--', color='black', label='Stim Onset')
 
+
+def n_trials_choice(pupil_size_df, subject):
+
+    pupil_size = pupil_size_df
+
+    pupil_size = pupil_size.reset_index(drop=True)
+    dpi = figure_style()
+    colors = ['#F96E46', '#8E4162', '#1DC7C6', '#C89AFF']
+    
+
+    #['#47BFD1', #4D8B31', '#FF9561']
+
+    #when the stim appears in the side with smaller probability
+
+    # Contrast = 1
+    df_slice = pupil_size_df[((pupil_size_df['Stim_side'] == -1) & (pupil_size_df['probabilityLeft'] == 0.8) & (pupil_size_df['contrast'] == 1))
+                      | ((pupil_size_df['Stim_side'] == 1) & (pupil_size_df['probabilityLeft'] == 0.2) & (pupil_size_df['contrast'] == 1))].reset_index()
+
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
+                        ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1' '    ' f'{subject}', ylim=[-25, 25])
+    plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    sns.despine(trim=True)
+
+    # Contrast = 0.0625
+    df_slice = pupil_size_df[((pupil_size_df['Stim_side'] == -1) & (pupil_size_df['probabilityLeft'] == 0.8) & (pupil_size_df['contrast'] == 0.0625))
+                      | ((pupil_size_df['Stim_side'] == 1) & (pupil_size_df['probabilityLeft'] == 0.2) & (pupil_size_df['contrast'] == 0.0625))].reset_index()
+
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
+                        ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625' '    ' f'{subject}', ylim=[-25, 25])
+    plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    sns.despine(trim=True)
+    
+    # Contrast = 0
+    df_slice = pupil_size_df[((pupil_size_df['Stim_side'] == -1) & (pupil_size_df['probabilityLeft'] == 0.8) & (pupil_size_df['contrast'] == 0))
+                      | ((pupil_size_df['Stim_side'] == 1) & (pupil_size_df['probabilityLeft'] == 0.2) & (pupil_size_df['contrast'] == 0))].reset_index()
+    
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
+                        ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0' '    ' f'{subject}', ylim=[-25, 25])
+    plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    sns.despine(trim=True)
+    
+    # No matter the contrast
+    df_slice = pupil_size[((pupil_size['Stim_side'] == -1) & (pupil_size['probabilityLeft'] == 0.8))
+                          | ((pupil_size['Stim_side'] == 1) & (pupil_size['probabilityLeft'] == 0.2))].reset_index()
+
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
+                        ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = All' '    ' f'{subject}')
+    plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
+    sns.despine(trim=True)
+    
+    
+    
 
 if __name__ == '__main__':
     subject = "ZFM-02368"

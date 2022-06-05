@@ -33,7 +33,7 @@ all_pupil_sizes = []
 
 
 # Query sessions
-eids = one.search(subject='ZFM-02368', dataset=['_ibl_leftCamera.dlc.pqt'], task_protocol='ephys')
+eids = one.search(subject='ZFM-02368', dataset=['_ibl_leftCamera.dlc.pqt', '_ibl_leftCamera.times.npy'], task_protocol='ephys')
     #eids = [eids[0]] #When we only want to run 1 specific animal
 
 # Loop over sessions

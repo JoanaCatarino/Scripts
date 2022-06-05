@@ -19,7 +19,7 @@ from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
-from pupil_size_plots import all_contrasts_by_blocks, all_contrasts_per_block_by_stim_side, all_contrasts_all_blocks_correct_error_by_stim_side_figure
+from pupil_size_plots import all_contrasts_by_blocks, all_contrasts_per_block_by_stim_side, all_contrasts_all_blocks_correct_error_by_stim_side_figure, n_trials_choice
 one = ONE()
 
 
@@ -32,12 +32,10 @@ pupil_size = pd.DataFrame()
 results_df = pd.DataFrame()
 results_df_baseline = pd.DataFrame()
 all_pupil_sizes = []
-#Fig_path =
 
 
 # Query sessions
 eids = one.search(subject='ZFM-02368', dataset=['_ibl_leftCamera.dlc.pqt'], task_protocol='ephys')
-    #eids = [eids[0]] #When we only want to run 1 specific animal
 
 # Loop over sessions
 for i, eid in enumerate(eids):
@@ -91,18 +89,20 @@ for i, eid in enumerate(eids):
                                                                'Feedback_type':df_Trials.loc[t, 'feedbackType'],
                                                               'probabilityLeft':df_Trials.loc[t, 'probabilityLeft']})))
 
-    pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, np.inf], labels=['0-20 trials', '20-40 trials', '+40 trials'])
+    pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, N_Trials*3, np.inf], labels=['0-10 trials', '10-20 trials', '20-30 trials', '+30 trials'])
     
     all_pupil_sizes.append(pupil_size) 
     
 pupil_size_df = pd.concat(all_pupil_sizes, axis=0)  
 
-#pupil_size_df.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/ZFM-02368_all_sessions_df.csv')
+pupil_size_df.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_sessions_' + subject + '.csv')
 
-#pupil_size_mean_test = pupil_size_df.groupby('time').mean()
+pupil_size_mean = pupil_size_df.groupby('time').mean()
 
-#pupil_size_mean_test.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/pupil_size_mean_test.csv')
+pupil_size_mean.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/Mean_' + subject + '.csv')
 
+
+#%%
 
 # ------ PLOTS ------
 
@@ -112,10 +112,5 @@ all_contrasts_per_block_by_stim_side(pupil_size_df, subject)
 
 all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df, subject)
 
-
-
-
-
-
-
+n_trials_choice(pupil_size_df, subject)
 
