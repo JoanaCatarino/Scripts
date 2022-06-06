@@ -6,7 +6,7 @@ import seaborn as sns
 from plot_functions import figure_style
 
 
-pupil_size_df = pd.read_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_sessions_ZFM-02368.csv')
+pupil_size_df = pd.read_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_animals_Mainen_mean.csv')
 subject = pupil_size_df.subject.unique()
 
 
@@ -148,7 +148,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.25 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.8)) ], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.8' '    ' f'{subject}, {date}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)

@@ -31,8 +31,8 @@ all_sessions_one_animal = []
 
 
 # Query sessions
-eids, ses_details = one.search(lab='mainenlab', dataset=['_ibl_leftCamera.dlc.pqt', '_ibl_leftCamera.times.npy'], task_protocol='ephys', 
-                               date_range=['2021-01-01', '2021-02-01'], details=True, project='ibl_neuropixel_brainwide_01')
+eids, ses_details = one.search(lab='mainenlab', dataset=['_ibl_leftCamera.dlc.pqt', '_ibl_leftCamera.times.npy'], task_protocol='ephys',
+                               details=True, project='ibl_neuropixel_brainwide_01')
 subjects = np.unique([s['subject'] for s in ses_details])
 
                                
@@ -114,15 +114,13 @@ for s, subject in enumerate(subjects):
     
     all_sessions_one_animal_mean['subject'] = subject
     all_pupil = pd.concat((all_pupil, all_sessions_one_animal_mean))
-    all_pupil.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_animals_Mainen_mean_.csv')
+    all_pupil.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_animals_Mainen_mean.csv')
     
 print ('Done')
 
 
 
 
-
-'''
 
 
 
