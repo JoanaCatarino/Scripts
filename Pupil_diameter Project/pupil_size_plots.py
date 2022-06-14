@@ -6,7 +6,7 @@ import seaborn as sns
 from plot_functions import figure_style
 
 
-pupil_size_df = pd.read_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/All_animals_Mainen_mean.csv')
+pupil_size_df = pd.read_csv('/home/joana/Desktop/data_Pupil_Project/All_animals_Mainen_mean.csv')
 subject = pupil_size_df.subject.unique()
 
 
@@ -22,7 +22,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = -1
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -1' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -30,7 +30,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = -0.25
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -0.25)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.25' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.25' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -38,7 +38,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = -0.125
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -0.125)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.125' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.125' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -46,7 +46,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = -0.0625
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == -0.0625)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.0625' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = -0.0625' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -54,7 +54,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = +0
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0) & (pupil_size['contrast'] == -0)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 right side' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 right side' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -62,7 +62,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = +1
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 1)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -70,7 +70,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = +0.25
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0.25)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -78,7 +78,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = +0.125
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0.125)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -86,7 +86,7 @@ def all_contrasts_by_blocks(pupil_size_df, subject):
     # Contrast = +0.0625
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='probabilityLeft', data=pupil_size[(pupil_size['contrast'] == 0.0625)], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -105,7 +105,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 1 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.2' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -113,7 +113,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 1 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.5' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -121,7 +121,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 1 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.8' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -132,7 +132,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.25 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.2' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -140,7 +140,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.25 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.5)) ], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.5' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -148,7 +148,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.25 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.8)) ], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.8' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -158,7 +158,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.125 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.2' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -166,7 +166,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.125 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.5' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) 
     sns.despine(trim=True)
@@ -174,7 +174,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.125 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.8' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) 
     sns.despine(trim=True)
@@ -185,7 +185,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.0625 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.2' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -193,7 +193,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.0625 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.5' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) 
     sns.despine(trim=True)
@@ -201,7 +201,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0.0625 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.8' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -211,7 +211,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0 probability 0.2
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.2)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.2))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.2' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.2' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -219,7 +219,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0 probability 0.5
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.5)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.5))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.5' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.5' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -227,7 +227,7 @@ def all_contrasts_per_block_by_stim_side(pupil_size_df, subject):
     # Contrast 0 probability 0.8
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.8)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.8))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.8' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.8' '    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
     sns.despine(trim=True)
@@ -453,7 +453,7 @@ def n_trials_choice(pupil_size_df, subject):
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
                         ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1''    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -465,7 +465,7 @@ def n_trials_choice(pupil_size_df, subject):
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
                         ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625''    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -477,7 +477,7 @@ def n_trials_choice(pupil_size_df, subject):
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
                         ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0' '    ' f'{subject}', ylim=[-25, 25])
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0''    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
@@ -489,11 +489,292 @@ def n_trials_choice(pupil_size_df, subject):
     f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
     lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='after_switch', data=df_slice, legend='full',
                         ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
-    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = All' '    ' f'{subject}')
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = All''    ' 'n=20 mice', ylim=[-10, 10])
     plt.axvline(x = 0, color = 'black', label = 'Stim Onset', linestyle='dashed')
     ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
     sns.despine(trim=True)
     
+
+#%%
+
+def all_contrasts_all_blocks_correct_error_by_stim_side_figure_clean(pupil_size_df, subject):
+   
+    
+    pupil_size = pupil_size_df
+    
+    
+    # CORRECT vs INCORRECT TRIALS
+    pupil_size = pupil_size.reset_index(drop=True)
+
+    dpi = figure_style()
+    colors = ['#47BFD1', '#C89AFF']
+
+
+    # Contrast 1 probability 0.2 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    lineplt = sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.2 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 1 probability 0.2 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 1 and probability 0.2 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 1 probability 0.5 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 1 and probability 0.5 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 1 probability 0.5 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 1 and probability 0.5 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 1 probability 0.8 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 1 and probability 0.8 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 1 probability 0.8 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -1) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 1) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 1 and probability 0.8 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+
+ # ----------
+
+
+    # Contrast 0.25 probability 0.2 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.2 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.25 probability 0.2 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.25 and probability 0.2 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.25 probability 0.5 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.25 and probability 0.5 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.25 probability 0.5 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.25 and probability 0.5 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.25 probability 0.8 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.25 and probability 0.8 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.25 probability 0.8 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.25) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.25) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.25 and probability 0.8 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+
+# ------------
+
+
+    # Contrast 0.125 probability 0.2 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.2 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.125 probability 0.2 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.125 and probability 0.2 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.125 probability 0.5 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.125 and probability 0.5 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.125 probability 0.5 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.125 and probability 0.5 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.125 probability 0.8 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.125 and probability 0.8 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.125 probability 0.8 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.125 and probability 0.8 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+# ------------
+
+
+    # Contrast 0.0625 probability 0.2 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.2 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.0625 probability 0.2 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0.0625 and probability 0.2 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.0625 probability 0.5 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.0625 and probability 0.5 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.0625 probability 0.5 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.0625 and probability 0.5 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.0625 probability 0.8 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.0625 and probability 0.8 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0.0625 probability 0.8 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.0625) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.0625) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0.0625 and probability 0.8 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+# ------------
+
+
+    # Contrast 0 probability 0.2 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.2 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0 probability 0.2 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.2) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='Pupil size (%)', title=f' Contrast = 0 and probability 0.2 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0 probability 0.5 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0 and probability 0.5 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0 probability 0.5 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0 and probability 0.5 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+    # Contrast 0 probability 0.8 - CORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == 1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0 and probability 0.8 CORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+    
+    # Contrast 0 probability 0.8 - INCORRECT TRIALS
+    f, (ax1) = plt.subplots(1, 1, sharey=True, sharex=False, dpi=dpi)
+    sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1))], legend='full', ci=68, ax=ax1, estimator=np.median, palette = sns.color_palette(colors))
+    ax1.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Contrast = 0 and probability 0.8 INCORRECT', ylim=[-10, 10])
+    ax1.plot([0, 0], ax1.get_ylim(), ls='--', color='black', label='Stim Onset')
+    ax1.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False)
+    sns.despine(trim=True)
+
+
+
+
+
+
+
+
+
+
+
+
     
     
 
