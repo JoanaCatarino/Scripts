@@ -33,7 +33,7 @@ all_pupil_sizes = []
 
 
 # Query sessions
-eids = one.search(subject='ZFM-02368', dataset=['_ibl_leftCamera.dlc.pqt'], task_protocol='ephys')
+eids = one.search(subject='ZFM-02368', dataset=['_ibl_leftCamera.dlc.pqt', '_ibl_leftCamera.times.npy'], task_protocol='ephys')
     #eids = [eids[0]] #When we only want to run 1 specific animal
 
 # Loop over sessions
@@ -56,9 +56,9 @@ for i, eid in enumerate(eids):
 
     # Find Block transitions
     block_trans = np.append([0], np.array(np.where(np.diff(df_Trials['probabilityLeft']) != 0)) + 1)
-    trans_to = df_Trials.loc[block_trans, 'probabilityLeft']
-
-
+    trans_to = df_Trials.loc[block_trans[1:], 'probabilityLeft']
+    trans_from = np.concatenate(([np.nan], df_Trials.loc[block_trans[1:] - 1, 'probabilityLeft'].values))
+    
 # Alignment (aligned to stimOn_times)
 
     np_stimOn = np.array(df_Trials['stimOn_times'])
@@ -71,22 +71,25 @@ for i, eid in enumerate(eids):
         diff_tr = t - block_trans
         last_trans = diff_tr[diff_tr >= 0].argmin()
         trials_since_switch = t - block_trans[last_trans]
+        transition_from = trans_from[last_trans]
 
+    
         for b, time_bin in enumerate (TIME_BINS):
             diameter_1[b] = np.nanmedian(diameter_perc [(np_times > (trial_start + time_bin) - (BIN_SIZE / 2)) & (np_times < (trial_start + time_bin) + (BIN_SIZE / 2))])
             baseline_subtracted[b] = np.nanmedian(diameter_perc[(np_times > (trial_start + time_bin) - (BIN_SIZE / 2)) & (np_times < (trial_start + time_bin) + (BIN_SIZE / 2))]) - baseline
 
         pupil_size = pd.concat((pupil_size, pd.DataFrame(data={'diameter': diameter_1,
-                                                              'baseline_subtracted': baseline_subtracted,
-                                                              'eid': eid,
-                                                              'subject': subject,
-                                                              'trial': t,
-                                                              'trial_after_switch': trials_since_switch,
-                                                              'contrast': df_Trials.loc[t, 'signed_contrast'],
-                                                              'time': TIME_BINS,
-                                                              'Stim_side':df_Trials.loc[t, 'stim_side'],
-                                                               'Feedback_type':df_Trials.loc[t, 'feedbackType'],
-                                                              'probabilityLeft':df_Trials.loc[t, 'probabilityLeft']})))
+                                                                'baseline_subtracted': baseline_subtracted,
+                                                                'eid': eid,
+                                                                'subject': subject,
+                                                                'trial': t,
+                                                                'trial_after_switch': trials_since_switch,
+                                                                'transition_from': transition_from,
+                                                                'contrast': df_Trials.loc[t, 'signed_contrast'],
+                                                                'time': TIME_BINS,
+                                                                'Stim_side':df_Trials.loc[t, 'stim_side'],
+                                                                'Feedback_type':df_Trials.loc[t, 'feedbackType'],
+                                                                'probabilityLeft':df_Trials.loc[t, 'probabilityLeft']})))
 
     pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, np.inf], labels=['0-20 trials', '20-40 trials', '+40 trials'])
     
@@ -405,7 +408,7 @@ pupil_size_df = pd.concat(all_pupil_sizes, axis=0)
 
     # Contrast 0.125 probability 0.5 - CORRECT TRIALS
     sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.5) & (pupil_size['Feedback_type'] == 1))], legend=None, ci=68, ax=ax3, estimator=np.median, palette = sns.color_palette(colors))
-    ax3.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Probability 0.5 - CORRECT', ylim=[-25, 25])
+    ax3.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Probability 0.5 - CORRECT', yate_range=[ '2021-01-01', '2030-01-01'],lim=[-25, 25])
     ax3.plot([0, 0], ax3.get_ylim(), ls='--', color='black', label='Stim Onset')
 
     # Contrast 0.125 probability 0.5 - INCORRECT TRIALS
@@ -419,7 +422,7 @@ pupil_size_df = pd.concat(all_pupil_sizes, axis=0)
     ax5.plot([0, 0], ax5.get_ylim(), ls='--', color='black', label='Stim Onset')
     ax5.legend(loc='center left', bbox_to_anchor=(1, 0.5), frameon=False) # Put a legend to the right of the current axis
 
-    # Contrast 0.125 probability 0.8 - INCORRECT TRIALS
+    # Contrast 0.125 probability 0.8 - INCORRECT TRIALSate_range=[ '2021-01-01', '2030-01-01'],
     sns.lineplot(x='time', y='baseline_subtracted', hue='Stim_side', data=pupil_size[((pupil_size['contrast'] == -0.125) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1)) | ((pupil_size['contrast'] == 0.125) & (pupil_size['probabilityLeft'] == 0.8) & (pupil_size['Feedback_type'] == -1))], legend=None, ci=68, ax=ax6, estimator=np.median, palette = sns.color_palette(colors))
     ax6.set(xlabel='Time relative to StimON (s)', ylabel='', title=f' Probability 0.8 - INCORRECT', ylim=[-25, 25])
     ax6.plot([0, 0], ax6.get_ylim(), ls='--', color='black', label='Stim Onset')
