@@ -4,9 +4,12 @@ import pandas as pd
 import numpy as np
 import seaborn as sns
 from plot_functions import figure_style
+from one.api import ONE
+one = ONE(mode='local')
 
 
-pupil_size_df = pd.read_csv('/home/joana/Desktop/data_Pupil_Project/All_animals_Mainen_mean.csv')
+
+pupil_size_df = pd.read_csv('C:/Users/Asus/Desktop/Data_frames Mainen lab/All_animals_Mainen_mean_stimON.csv')
 subject = pupil_size_df.subject.unique()
 
 

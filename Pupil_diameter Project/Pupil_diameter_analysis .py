@@ -16,8 +16,8 @@ from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
-from pupil_size_plots import (all_contrasts_by_blocks)
-one = ONE()
+#from pupil_size_plots import (all_contrasts_by_blocks)
+one = ONE(mode = 'local')
 
 
 # Settings

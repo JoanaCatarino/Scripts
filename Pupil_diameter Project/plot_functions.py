@@ -14,7 +14,7 @@ from scipy.stats import zscore
 import tkinter as tk
 from os.path import join
 from one.api import ONE
-one = ONE()
+one = ONE(mode = 'local')
 
 
 
