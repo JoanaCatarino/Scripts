@@ -134,7 +134,7 @@ for s, subject in enumerate(subjects):
     
     all_sessions_one_animal_mean_so['subject'] = subject
     all_pupil_so = pd.concat((all_pupil_so, all_sessions_one_animal_mean_so), ignore_index=True)
-    all_pupil_so.to_csv('/home/joana/Desktop/data_Pupil_Project/All_animals_Mainen_mean_so.csv')
+    all_pupil_so.to_csv('/home/joana/Desktop/data_Pupil_Project/All_animals_Mainen_mean_stimON.csv')
     
 print ('Done')
 
@@ -239,13 +239,16 @@ for s, subject in enumerate(subjects):
     
     all_sessions_one_animal_mean_ft['subject'] = subject
     all_pupil_ft = pd.concat((all_pupil_ft, all_sessions_one_animal_mean_ft), ignore_index=True)
-    all_pupil_ft.to_csv('/home/joana/Desktop/data_Pupil_Project/Aligned to feedback times/All_animals_Mainen_mean_ft.csv')
+    all_pupil_ft.to_csv('/home/joana/Desktop/data_Pupil_Project/Aligned to feedback times/All_animals_Mainen_mean_feedbacktimes.csv')
     
 print ('Done')
 
 
 
+#iMPORTANT TO DO 'BAR GRAPHS'
 
+pupil_size_df['time_group'] = pd.cut(pupil_size_df['time'], [-0.5, 0, 0.5], include_lowest=True, labels=['Pre', 'post'])
 
+pupil_grouped_df = pupil_size_df.groupby(['subject', 'time_group']).mean()
 
 
