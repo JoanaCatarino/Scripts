@@ -19,7 +19,7 @@ from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
-from pupil_size_plots import all_contrasts_by_blocks, all_contrasts_per_block_by_stim_side, all_contrasts_all_blocks_correct_error_by_stim_side_figure, n_trials_choice
+#from pupil_size_plots import all_contrasts_by_blocks, all_contrasts_per_block_by_stim_side, all_contrasts_all_blocks_correct_error_by_stim_side_figure, n_trials_choice
 one = ONE()
 
 
@@ -51,9 +51,14 @@ for i, eid in enumerate(eids):
     info = one.get_details(eid)
     subject = info['subject']
     date = info['start_time'].split('T')[0]
+    print(f'{subject} {date}')
 
     # Load in trials
-    df_Trials = load_trials(eid)
+    try:
+        df_Trials = load_trials(eid)
+    except Exception as err:
+        print(err)
+        continue
 
     # Find Block transitions
     block_trans = np.append([0], np.array(np.where(np.diff(df_Trials['probabilityLeft']) != 0)) + 1)
