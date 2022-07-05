@@ -7,28 +7,36 @@ By: Guido Meijer
 
 import numpy as np
 import pandas as pd
-from brainbox.behavior.dlc import (get_pupil_diameter, get_smooth_pupil_diameter,
-                                   likelihood_threshold)
+from dlc_functions_new import (get_dlc_XYs, get_raw_and_smooth_pupil_dia)
 from one.api import ONE
 
 
-def load_pupil(eid, view='left', likelihood_thresh=0.9, outlier_thresh=5, one=None):
+# To choose the behavioral criteria ww want to filter for 
+def behavioral_criterion(eids, max_lapse=0.3, max_bias=0.4, min_trials=1, one=None):
     if one is None:
         one = ONE()
-    try:
-        times = one.load_dataset(eid, '_ibl_%sCamera.times.npy' % view)
-        dlc = one.load_dataset(eid, '_ibl_%sCamera.dlc.pqt' % view)
-    except KeyError:
-        print('not all dlc data available')
-        return None, None
+    use_eids = []
+    for j, eid in enumerate(eids):
+        try:
+            trials = load_trials(eid, one=one)
+            lapse_l = 1 - (np.sum(trials.loc[trials['signed_contrast'] == -1, 'choice'] == 1)
+                           / trials.loc[trials['signed_contrast'] == -1, 'choice'].shape[0])
+            lapse_r = 1 - (np.sum(trials.loc[trials['signed_contrast'] == 1, 'choice'] == -1)
+                           / trials.loc[trials['signed_contrast'] == 1, 'choice'].shape[0])
+            bias = np.abs(0.5 - (np.sum(trials.loc[trials['signed_contrast'] == 0, 'choice'] == 1)
+                                 / np.shape(trials.loc[trials['signed_contrast'] == 0, 'choice'] == 1)[0]))
+            details = one.get_details(eid)
+            if ((lapse_l < max_lapse) & (lapse_r < max_lapse) & (trials.shape[0] > min_trials)
+                    & (bias < max_bias)):
+                use_eids.append(eid)
+            else:
+                print('%s %s excluded (n_trials: %d, lapse_l: %.2f, lapse_r: %.2f, bias: %.2f)'
+                      % (details['subject'], details['start_time'][:10], trials.shape[0], lapse_l, lapse_r, bias))
+        except Exception:
+            print('Could not load session %s' % eid)
+    return use_eids
 
-    # Get smooth pupil
-    dlc = likelihood_threshold(dlc, threshold=likelihood_thresh)
-    raw_pupil_diameter = get_pupil_diameter(dlc)
-    pupil_diameter = get_smooth_pupil_diameter(raw_pupil_diameter, 'left',
-                                               std_thresh=outlier_thresh)
 
-    return times, pupil_diameter, raw_pupil_diameter
 
 
 # version from 2022.06.28 (new way to load the trials)
@@ -67,6 +75,8 @@ def load_trials(eid, invert_choice=False, invert_stimside=False,
 
    
     return trials
+
+
 
 
 '''
@@ -121,4 +131,26 @@ def load_trials(eid, laser_stimulation=False, invert_choice=False, invert_stimsi
 
     return trials
 
+'''
+
+
+'''
+# old version to get pupil diameter dlc variables 
+def load_pupil(eid, view='left', likelihood_thresh=0.9, outlier_thresh=5, one=None):
+    if one is None:
+        one = ONE()
+    try:
+        times = one.load_dataset(eid, '_ibl_%sCamera.times.npy' % view)
+        dlc = one.load_dataset(eid, '_ibl_%sCamera.dlc.pqt' % view)
+    except KeyError:
+        print('not all dlc data available')
+        return None, None
+
+    # Get smooth pupil
+    dlc = likelihood_threshold(dlc, threshold=likelihood_thresh)
+    raw_pupil_diameter = get_pupil_diameter(dlc)
+    pupil_diameter = get_smooth_pupil_diameter(raw_pupil_diameter, 'left',
+                                               std_thresh=outlier_thresh)
+
+    return times, pupil_diameter, raw_pupil_diameter
 '''

@@ -10,7 +10,6 @@ Created on Fri May 27 16:24:35 2022
 TEST
 '''
 
-from pupil_functions import load_pupil, load_trials
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
@@ -19,6 +18,8 @@ from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
 from one.api import ONE
+from pupil_functions import load_trials
+from dlc_functions_new import (get_dlc_XYs, get_raw_and_smooth_pupil_dia)
 #from pupil_size_plots import all_contrasts_by_blocks, all_contrasts_per_block_by_stim_side, all_contrasts_all_blocks_correct_error_by_stim_side_figure, n_trials_choice
 one = ONE()
 
@@ -31,6 +32,7 @@ N_Trials = 10
 pupil_size = pd.DataFrame()
 results_df = pd.DataFrame()
 results_df_baseline = pd.DataFrame()
+df_Trials_RT2 = []
 all_pupil_sizes = []
 
 
@@ -41,7 +43,8 @@ eids = one.search(subject='ZFM-02368', dataset=['_ibl_leftCamera.dlc.pqt'], task
 for i, eid in enumerate(eids):
 
     # Get pupil diameter
-    times, pupil_diameter, raw_pupil_diameter = load_pupil(eid, one=one)
+    times, _ = get_dlc_XYs(one, eid) 
+    pupil_diameter, raw_pupil_diameter = get_raw_and_smooth_pupil_dia(eid, 'left', one)
 
     # Calculate percentage change
     diameter_perc = ((pupil_diameter - np.percentile(pupil_diameter[~np.isnan(pupil_diameter)], 2))
@@ -59,7 +62,12 @@ for i, eid in enumerate(eids):
     except Exception as err:
         print(err)
         continue
-
+    
+    
+    # Select only the trial in which reaction time is equal or bigger than 2 seconnds
+    df_Trials_RT2 = df_Trials[df_Trials['reaction_times'] >= 2]
+    
+    
     # Find Block transitions
     block_trans = np.append([0], np.array(np.where(np.diff(df_Trials['probabilityLeft']) != 0)) + 1)
     trans_to = df_Trials.loc[block_trans, 'probabilityLeft']

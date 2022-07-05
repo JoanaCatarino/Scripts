@@ -5,7 +5,7 @@ Created on Fri May  6 16:58:15 2022
 @author: joana
 """
 
-from pupil_functions import load_pupil, load_trials
+from pupil_functions import load_trials
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
