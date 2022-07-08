@@ -6,7 +6,6 @@ Created on Fri May 13 14:26:53 2022
 @author: joana
 """
 
-from pupil_functions import load_pupil, load_trials
 import matplotlib.pyplot as plt
 import numpy as np
 import seaborn as sns
@@ -14,6 +13,8 @@ import pandas as pd
 from scipy.stats import zscore
 from plot_functions import (figure_style)
 from os.path import join
+from pupil_functions import load_trials
+from dlc_functions_new import (get_dlc_XYs, get_raw_and_smooth_pupil_dia)
 from one.api import ONE  
 one = ONE() # if we want to use data already available in the computer use -> one = ONE (mode='local')
 
@@ -33,6 +34,8 @@ results_df_baseline = pd.DataFrame()
 eids, ses_details = one.search(lab='mainenlab', dataset=['_ibl_leftCamera.dlc.pqt', '_ibl_leftCamera.times.npy'], task_protocol='ephys',
                                details=True, project='ibl_neuropixel_brainwide_01')
 subjects = np.unique([s['subject'] for s in ses_details])
+
+
 
  #%%                              
 
@@ -55,7 +58,8 @@ for s, subject in enumerate(subjects):
         
         # Get pupil diameter
         try:
-            times, pupil_diameter, raw_pupil_diameter = load_pupil(eid, one=one)
+            times, _ = get_dlc_XYs(one, eid) 
+            pupil_diameter, raw_pupil_diameter = get_raw_and_smooth_pupil_dia(eid, 'left', one)
         except Exception as err:
             print(err)
             continue

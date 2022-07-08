@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Fri May 27 16:24:35 2022
+Created on Fri Jul  8 12:54:27 2022
 
 @author: joana
 """
+''' 
+
+Script to test how signal with reaction times bigger than 2s is!
+    - does not have trial after block switch because we are discarding some of the trials due to the reaction time criteria
 
 '''
-TEST
-'''
+
 
 import matplotlib.pyplot as plt
 import numpy as np
@@ -68,10 +71,14 @@ for i, eid in enumerate(eids):
     df_Trials_RT2 = df_Trials[df_Trials['reaction_times'] >= 2]
     
     
+    # To make df_Trials equal to df_Trials_RT2 and avoid changing the rest of the script 
+    df_Trials = df_Trials_RT2
+    
+    '''
     # Find Block transitions
     block_trans = np.append([0], np.array(np.where(np.diff(df_Trials['probabilityLeft']) != 0)) + 1)
     trans_to = df_Trials.loc[block_trans, 'probabilityLeft']
-
+    '''
 
 # Alignment (aligned to stimOn_times)
 
@@ -82,9 +89,7 @@ for i, eid in enumerate(eids):
         diameter_1 = np.array([np.nan] * TIME_BINS.shape[0])
         baseline_subtracted = np.array([np.nan] * TIME_BINS.shape[0])
         baseline = np.nanmedian(diameter_perc [(np_times > (trial_start - BASELINE[0])) & (np_times < (trial_start - BASELINE[1]))])
-        diff_tr = t - block_trans
-        last_trans = diff_tr[diff_tr >= 0].argmin()
-        trials_since_switch = t - block_trans[last_trans]
+        
 
         for b, time_bin in enumerate (TIME_BINS):
             diameter_1[b] = np.nanmedian(diameter_perc [(np_times > (trial_start + time_bin) - (BIN_SIZE / 2)) & (np_times < (trial_start + time_bin) + (BIN_SIZE / 2))])
@@ -95,14 +100,12 @@ for i, eid in enumerate(eids):
                                                               'eid': eid,
                                                               'subject': subject,
                                                               'trial': t,
-                                                              'trial_after_switch': trials_since_switch,
                                                               'contrast': df_Trials.loc[t, 'signed_contrast'],
                                                               'time': TIME_BINS,
                                                               'Stim_side':df_Trials.loc[t, 'stim_side'],
-                                                               'Feedback_type':df_Trials.loc[t, 'feedbackType'],
+                                                              'Feedback_type':df_Trials.loc[t, 'feedbackType'],
                                                               'probabilityLeft':df_Trials.loc[t, 'probabilityLeft']})))
 
-    pupil_size['after_switch'] = pd.cut(pupil_size['trial_after_switch'], [-1, N_Trials, N_Trials*2, N_Trials*3, np.inf], labels=['0-10 trials', '10-20 trials', '20-30 trials', '+30 trials'])
     
     all_pupil_sizes.append(pupil_size) 
     
@@ -117,16 +120,3 @@ pupil_size_mean = pupil_size_df.groupby('time').mean()
 #pupil_size_mean.to_csv('/home/joana/Desktop/IBL/Scripts/Pupil_diameter Project/df_files/Mean_' + subject + '.csv')
 
 pupil_size_mean.to_csv('/home/joana/Desktop/test scripts dataframes/Mean_' + subject + '.csv') #JUST TO TEST 
-
-#%%
-
-# ------ PLOTS ------
-
-all_contrasts_by_blocks(pupil_size_df, subject)
-
-all_contrasts_per_block_by_stim_side(pupil_size_df, subject)
-
-all_contrasts_all_blocks_correct_error_by_stim_side_figure(pupil_size_df, subject)
-
-n_trials_choice(pupil_size_df, subject)
-
